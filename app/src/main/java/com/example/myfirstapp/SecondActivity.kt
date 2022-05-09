@@ -1,6 +1,7 @@
 package com.example.myfirstapp
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,7 +16,11 @@ class SecondActivity : AppCompatActivity() {
         setContentView(R.layout.activity_second)
 
 
-        findViewById<TextView>(R.id.textView).text = "Hello, " + intent.extras?.getString("NAME" , "")
+        val name = intent.extras?.getString("NAME" , "")
+        findViewById<TextView>(R.id.textView).text = "Hello, $name"
+
+        val sharedPref = getSharedPreferences("myApp", Context.MODE_PRIVATE)
+        sharedPref.edit().putString("NAME", name).apply()
 
         val imageView = findViewById<ImageView>(R.id.imageView2)
         imageView.setOnClickListener {
