@@ -16,11 +16,17 @@ class SecondActivity : AppCompatActivity() {
         setContentView(R.layout.activity_second)
 
 
-        val name = intent.extras?.getString("NAME" , "")
-        findViewById<TextView>(R.id.textView).text = "Hello, $name"
+        val intent = intent.extras?.getString("NAME" , "")
+
 
         val sharedPref = getSharedPreferences("myApp", Context.MODE_PRIVATE)
-        sharedPref.edit().putString("NAME", name).apply()
+        if(intent != null) {
+            sharedPref.edit().putString("NAME", intent).apply()
+        }
+        val name = sharedPref.getString("NAME", "")
+
+        findViewById<TextView>(R.id.textView).text = "Hello, $name"
+
 
         val imageView = findViewById<ImageView>(R.id.imageView2)
         imageView.setOnClickListener {

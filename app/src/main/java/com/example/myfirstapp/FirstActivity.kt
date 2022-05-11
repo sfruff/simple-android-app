@@ -28,7 +28,6 @@ class FirstActivity : AppCompatActivity() {
         imageView2.setOnClickListener {
 
             val intent = Intent(this, SecondActivity::class.java)
-            intent.putExtra("NAME", "")
             startActivity(intent)
         }
 
